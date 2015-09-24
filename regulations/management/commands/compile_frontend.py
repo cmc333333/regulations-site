@@ -45,14 +45,12 @@ class Command(BaseCommand):
         # Delete everything in BUILD_DIR except node_modules, which we use for
         # caching the downloaded node libraries
         if os.path.exists(self.BUILD_DIR):
-            files = filter(os.path.isfile, os.listdir(self.BUILD_DIR))
-            dirs = filter(os.path.isdir, os.listdir(self.BUILD_DIR))
-            for f in files:
-                os.rm(os.path.join(self.BUILD_DIR, f))
-
-            for d in dirs:
-                if d != 'node_modules':
-                    shutil.rmtree(os.path.join(self.BUILD_DIR, d))
+            for file_name in os.listdir(self.BUILD_DIR):
+                with_path = os.path.join(self.BUILD_DIR, file_name)
+                if os.path.isfile(with_path):
+                    os.remove(with_path)
+                elif file_name != 'node_modules':
+                    shutil.rmtree(with_path)
         else:
             os.mkdir(self.BUILD_DIR)
 
