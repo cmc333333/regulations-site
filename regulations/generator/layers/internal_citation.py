@@ -2,11 +2,14 @@ from django.template import loader, Context
 from django.core.urlresolvers import reverse, NoReverseMatch
 from ..node_types import to_markup_id
 
+from regulations.generator.layers.base import LayerBase
 from regulations.generator.section_url import SectionUrl
 
 
-class InternalCitationLayer():
+class InternalCitationLayer(LayerBase):
     shorthand = 'internal'
+    data_source = 'internal-citations'
+    layer_type = LayerBase.INLINE
 
     def __init__(self, layer):
         self.layer = layer
