@@ -110,6 +110,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
+    'regulations.middleware.set_url_context.SetUrlContext',
 )
 
 ROOT_URLCONF = 'regulations.urls'
