@@ -77,16 +77,16 @@ class DefinitionTest(BaseTest, unittest.TestCase):
         # go to 1005-1-a
         toc_toggle.click()
         WebDriverWait(self.driver, 10)
-        seen = {}
+        seen = set()
         for i in range(10):
             WebDriverWait(self.driver, 1)
             self.driver.execute_script(
-                "window.scrollTo(0, i*document.body.scrollHeight/10);".format(
+                "window.scrollTo(0, {}*document.body.scrollHeight/10);".format(
                     i))
             wayfinding_header = self.driver.find_element_by_xpath(
                 '//*[@id="active-title"]/em')
             seen.add(wayfinding_header.text)
-        print seen
+        print(seen)
         self.assertTrue(False)
         self.assertIn(wayfinding_header.text,
                       (u'\xa71005.1', u'\xa71005.1(a)'))
