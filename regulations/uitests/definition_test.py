@@ -81,8 +81,8 @@ class DefinitionTest(BaseTest, unittest.TestCase):
             "window.scrollTo(0, document.body.scrollHeight);")
         wayfinding_header = self.driver.find_element_by_xpath(
             '//*[@id="active-title"]/em')
-        self.assertTrue(
-            wayfinding_header.text in (u'\xa71005.1', u'\xa71005.1(a)'))
+        self.assertIn(wayfinding_header.text,
+                      (u'\xa71005.1', u'\xa71005.1(a)'))
 
         definition_update_link = self.driver.find_element_by_xpath(
             '//*[@id="1005-2-b-1"]/div[2]/div/a')
