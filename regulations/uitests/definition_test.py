@@ -78,7 +78,7 @@ class DefinitionTest(BaseTest, unittest.TestCase):
         toc_toggle.click()
         WebDriverWait(self.driver, 10)
         seen = set()
-        for i in range(10):
+        for i in range(11):
             WebDriverWait(self.driver, 1)
             self.driver.execute_script(
                 "window.scrollTo(0, {}*document.body.scrollHeight/10);".format(
