@@ -75,21 +75,21 @@ class DefinitionTest(BaseTest, unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="1005-2-b-1"]/div[2]/div')
 
         # go to 1005-1-a
-        toc_toggle.click()
-        WebDriverWait(self.driver, 10)
-        seen = set()
-        for i in range(11):
-            self.driver.execute_script(
-                "window.scrollTo(0, {}*document.body.scrollHeight/10);".format(
-                    i))
-            WebDriverWait(self.driver, 5)
+        headers_seen = set()
+        script = "window.scrollTo(0, {}*document.body.scrollHeight/5);"
+        for i in range(6):
+            self.driver.execute_script(script.format(i))
+            WebDriverWait(self.driver, 1)
             wayfinding_header = self.driver.find_element_by_xpath(
                 '//*[@id="active-title"]/em')
-            seen.add(wayfinding_header.text)
-        print(seen)
-        self.assertTrue(False)
-        self.assertIn(wayfinding_header.text,
-                      (u'\xa71005.1', u'\xa71005.1(a)'))
+            headers_seen.add(wayfinding_header.text)
+        self.assertIn(u'§1005.1', headers_seen)
+        self.assertIn(u'§1005.1(a)', headers_seen)
+
+        # (b) _may_ be seen, depending on fiddly bits in the driver
+        self.assertIn(len(headers_seen), (2, 3))
+        if len(headers_seen) == 3:
+            self.assertIn(u'§1005.1(b)', headers_seen)
 
         definition_update_link = self.driver.find_element_by_xpath(
             '//*[@id="1005-2-b-1"]/div[2]/div/a')
