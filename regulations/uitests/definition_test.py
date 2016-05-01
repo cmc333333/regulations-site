@@ -75,6 +75,8 @@ class DefinitionTest(BaseTest, unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="1005-2-b-1"]/div[2]/div')
 
         # go to 1005-1-a
+        toc_toggle.click()
+        WebDriverWait(self.driver, 10)
         headers_seen = set()
         script = "window.scrollTo(0, {}*document.body.scrollHeight/5);"
         for i in range(6):
@@ -91,7 +93,6 @@ class DefinitionTest(BaseTest, unittest.TestCase):
         if len(headers_seen) == 3:
             self.assertIn(u'§1005.1(b)', headers_seen)
 
-        toc_toggle.click()
         definition_update_link = self.driver.find_element_by_xpath(
             '//*[@id="1005-2-b-1"]/div[2]/div/a')
         definition_text = self.driver.find_element_by_xpath(
