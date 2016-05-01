@@ -79,7 +79,7 @@ class DefinitionTest(BaseTest, unittest.TestCase):
         script = "window.scrollTo(0, {}*document.body.scrollHeight/5);"
         for i in range(6):
             self.driver.execute_script(script.format(i))
-            WebDriverWait(self.driver, 1)
+            WebDriverWait(self.driver, 2)
             wayfinding_header = self.driver.find_element_by_xpath(
                 '//*[@id="active-title"]/em')
             headers_seen.add(wayfinding_header.text)
@@ -91,6 +91,7 @@ class DefinitionTest(BaseTest, unittest.TestCase):
         if len(headers_seen) == 3:
             self.assertIn(u'§1005.1(b)', headers_seen)
 
+        toc_toggle.click()
         definition_update_link = self.driver.find_element_by_xpath(
             '//*[@id="1005-2-b-1"]/div[2]/div/a')
         definition_text = self.driver.find_element_by_xpath(
