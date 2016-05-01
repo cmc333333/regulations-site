@@ -82,7 +82,7 @@ class DefinitionTest(BaseTest, unittest.TestCase):
             self.driver.execute_script(
                 "window.scrollTo(0, {}*document.body.scrollHeight/10);".format(
                     i))
-            WebDriverWait(self.driver, 1)
+            WebDriverWait(self.driver, 5)
             wayfinding_header = self.driver.find_element_by_xpath(
                 '//*[@id="active-title"]/em')
             seen.add(wayfinding_header.text)
