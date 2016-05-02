@@ -93,7 +93,7 @@ class DefinitionTest(BaseTest, unittest.TestCase):
             self.assertIn(u'§1005.1(b)', headers_seen)
 
         print(self.driver.find_element_by_xpath(
-            '//*[@id="1005-2-b-1"]/div[2]/div/').get_attribute('innerHTML'))
+            '//*[@id="1005-2-b-1"]/div[2]/div').get_attribute('innerHTML'))
         definition_update_link = self.driver.find_element_by_xpath(
             '//*[@id="1005-2-b-1"]/div[2]/div/a')
         definition_text = self.driver.find_element_by_xpath(
