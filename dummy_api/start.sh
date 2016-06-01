@@ -20,5 +20,7 @@ curl http://localhost:8282/notice/2016-02749 | python -m json.tool > original-no
 FUTURE=`date --date="1 month" +"%Y-%m-%d"`
 sed -i "s/2016-04-29/$FUTURE/g" original-notice.json > modified-notice.json
 curl -X PUT http://localhost:8282/notice/2016-02749 -d @modified-notice.json
+cat original-notice.json
+cat modified-notice.json
 
 docker logs core
